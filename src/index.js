@@ -36,13 +36,33 @@ for (const folder of commandFolders) {
   }
 }
 
-client.on(Events.InteractionCreate, (interaction) => {
-  if (!interaction.isChatInputCommand()){
+client.on(Events.InteractionCreate, async (interaction) => {
+  if (!interaction.isChatInputCommand()) return;
+
+  const command = interaction.client.commands.get(interaction.commandName);
+
+  if (!command) {
+    console.error(`${interaction.commandName} is not a valid command.`);
     return;
   }
-  console.log(interaction);
-});
 
+  try {
+    await command.execute(interaction);
+  } catch (error) {
+    console.error(error);
+    if (interaction.replied || interaction.deferred) {
+      await interaction.followUp({
+        content: `Error: ${interaction.commandName} was not executed`,
+        ephemeral: true,
+      });
+    } else {
+      await interaction.reply({
+        content: `Error: ${interaction.commandName} was not executed`,
+        ephemeral: true,
+      });
+    }
+  }
+});
 
 client.on('messageCreate',  (message) => {
     if (message.content === "<@1250453484311154760>") {
