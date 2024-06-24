@@ -30,7 +30,7 @@ for (const folder of commandFolders) {
       client.commands.set(command.data.name, command);
     } else {
       console.log(
-        `Command: ${filePath} is missing a required "data" or "execute" property.`
+        `Missing Requirement: ${filePath} is missing a required "data" or "execute" property.`
       );
     }
   }
