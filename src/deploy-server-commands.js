@@ -33,20 +33,16 @@ const rest = new REST().setToken(token);
       `Now Refreshing: Refreshing ${commands.length} application slash commands.`
     );
 
+    // for deploying server commands
     const data = await rest.put(
-      Routes.applicationGuildCommands(clientId, guildId),
-      { body: commands }
-    );
+        Routes.applicationGuildCommands(clientId, guildId),
+        { body: commands }
+      );
 
-    // for deploying global commands:
 
-    // const data = await rest.put(
-    //     Routes.applicationCommands(clientId), 
-    //     { body: commands });
-
-    console.log(
-      `Successfully Reloaded: Reloaded ${data.length} application slash commands.`
-    );
+      console.log(
+        `Successfully Reloaded: Reloaded ${data.length} application slash commands.`
+      );
   } catch (error) {
     console.error(error);
   }
