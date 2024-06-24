@@ -1,5 +1,5 @@
 
-const { Client, Events, GatewayIntentBits } = require('discord.js');
+const { Client, Events, GatewayIntentBits, userMention } = require('discord.js');
 const { token } = require('./config.json')
 const client = new Client({
   intents: [
@@ -10,8 +10,15 @@ const client = new Client({
 });
 
 client.on('messageCreate',  (message) => {
-    if(message.content === 'Wonderhoy'){
-        message.reply('Wonderhoy!');   
+    if (message.content === "<@1250453484311154760>") {
+      message.reply({
+        content: 'Project Sekai Gacha is up and running!',
+        allowedMentions: {
+          repliedUser: false
+        },
+      }
+
+      );
     }
 });
 
