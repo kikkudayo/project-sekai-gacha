@@ -18,12 +18,12 @@ module.exports = {
       console.error(error);
       if (interaction.replied || interaction.deferred) {
         await interaction.followUp({
-          content: `Error: ${interaction.commandName} was not executed`,
+          content: `Error: /${interaction.commandName} was not executed`,
           ephemeral: true,
         });
       } else {
         await interaction.reply({
-          content: `Error: ${interaction.commandName} was not executed`,
+          content: `Error: /${interaction.commandName} was not executed`,
           ephemeral: true,
         });
       }

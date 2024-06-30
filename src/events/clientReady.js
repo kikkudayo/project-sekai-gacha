@@ -4,7 +4,7 @@ module.exports = {
   name: Events.ClientReady,
   once: true,
   execute(client) {
-    console.log(`${readyClient.user.username} is now online.`);
+    console.log(`${client.user.username} is now online.`);
   },
 };
 
